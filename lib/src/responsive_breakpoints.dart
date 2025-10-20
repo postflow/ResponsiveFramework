@@ -187,11 +187,13 @@ class ResponsiveBreakpointsState extends State<ResponsiveBreakpoints>
   /// Set [breakpoints] and [breakpointSegments].
   void setBreakpoints() {
     // Optimization. Only update breakpoints if dimensions have changed.
-    if ((windowWidth != getWindowWidth()) ||
-        (windowHeight != getWindowHeight()) ||
+    final newWindowWidth = getWindowWidth();
+    final newWindowHeight = getWindowHeight();
+    if ((windowWidth != newWindowWidth) ||
+        (windowHeight != newWindowHeight) ||
         (windowWidth == 0)) {
-      windowWidth = getWindowWidth();
-      windowHeight = getWindowHeight();
+      windowWidth = newWindowWidth;
+      windowHeight = newWindowHeight;
       breakpoints.clear();
       breakpoints.addAll(getActiveBreakpoints());
       breakpoints.sort(ResponsiveUtils.breakpointComparator);
